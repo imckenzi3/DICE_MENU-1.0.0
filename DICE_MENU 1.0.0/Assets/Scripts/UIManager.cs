@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour{
   	private void Update(){
 		UpdatePage();
 
+		TurnPage()
+
 		if(Input.GetKeyDown(KeyCode.D)){	// Next Page
 			// iIf the page is greater than the cards total number divided by 8 --> page turn back to 0
 			if(page >= Mathf.Floor((cardManager.cards.Count -1) /8 )){
@@ -52,4 +54,11 @@ public class UIManager : MonoBehaviour{
             }
         }
     }
+
+	private void DisplayCards() {
+		
+	}
+	private void TurnPage() {
+		
+	}
 }
