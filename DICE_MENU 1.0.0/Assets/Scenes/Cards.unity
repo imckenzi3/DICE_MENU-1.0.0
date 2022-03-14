@@ -2368,7 +2368,19 @@ MonoBehaviour:
   m_Group: {fileID: 722100538}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByClass
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &157976267
 GameObject:
@@ -3556,7 +3568,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &229447680
 GameObject:
@@ -4397,7 +4421,19 @@ MonoBehaviour:
   m_Group: {fileID: 722100538}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByClass
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &319768628
 GameObject:
@@ -4522,7 +4558,19 @@ MonoBehaviour:
   m_Group: {fileID: 722100538}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByClass
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &322754500
 GameObject:
@@ -6120,7 +6168,19 @@ MonoBehaviour:
   m_Group: {fileID: 722100538}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByClass
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &549468086
 GameObject:
@@ -9270,7 +9330,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &856952291
 GameObject:
@@ -9566,7 +9638,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &881727746
 GameObject:
@@ -13694,7 +13778,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1310124857
 GameObject:
@@ -17117,7 +17213,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1577961199
 GameObject:
@@ -17667,7 +17775,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1602446191
 GameObject:
@@ -18384,7 +18504,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1673881347
 GameObject:
@@ -18949,7 +19081,19 @@ MonoBehaviour:
   m_Group: {fileID: 1310124862}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByMana
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1715137158
 GameObject:
@@ -22530,7 +22674,19 @@ MonoBehaviour:
   m_Group: {fileID: 722100538}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1731969824}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SearchByClass
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &2110614866
 GameObject:

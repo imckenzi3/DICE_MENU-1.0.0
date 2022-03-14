@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour{
   	private void Update(){
 		UpdatePage();
 
-		TurnPage()
+		TurnPage();
 
 		if(Input.GetKeyDown(KeyCode.D)){	// Next Page
 			// iIf the page is greater than the cards total number divided by 8 --> page turn back to 0
@@ -55,9 +55,22 @@ public class UIManager : MonoBehaviour{
         }
     }
 
-	private void DisplayCards() {
-		
+	public void SearchByMana(int _mana) {
+		for (int i = 0; i < cardManager.cards.Count; i++){
+			if(cardManager.cards[i].manaCost == _mana){
+
+			}
+		}
 	}
+
+	public void SearchByClass(string _cardClass){
+		for (int i = 0; i < cardManager.cards.Count; i++){
+			if(cardManager.cards[i].cardClass.ToString == _cardClass){
+
+			}
+		}
+	}
+	
 	private void TurnPage() {
 		
 	}
