@@ -19,5 +19,5 @@ MonoBehaviour:
   manaCost: 1
   attack: 10
   health: 10
-  isHeld: 0
-  holdNumber: 0
+  isHeld: 1
+  holdNumber: 1
