@@ -16,7 +16,7 @@ MonoBehaviour:
   description: The Guy
   artwork: {fileID: 21300000, guid: fae680a93252dc044ae24f40514cd4b7, type: 3}
   cardClass: 0
-  manaCost: 3
+  manaCost: 1
   attack: 6
   health: 6
   isHeld: 1

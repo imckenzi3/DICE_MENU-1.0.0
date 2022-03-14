@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'Note to self : Don''t let food go bad'
   artwork: {fileID: 21300000, guid: 636a4e5430c1c7d43986c854845e984f, type: 3}
   cardClass: 4
-  manaCost: 4
+  manaCost: 1
   attack: 10
   health: 10
   isHeld: 0

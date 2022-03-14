@@ -16,7 +16,7 @@ MonoBehaviour:
   description: The Light Shall Burn You!
   artwork: {fileID: 21300000, guid: 279dd8a1c0e1c584e9db42aa0dd1417c, type: 3}
   cardClass: 0
-  manaCost: 8
+  manaCost: 6
   attack: 7
   health: 10
   isHeld: 1

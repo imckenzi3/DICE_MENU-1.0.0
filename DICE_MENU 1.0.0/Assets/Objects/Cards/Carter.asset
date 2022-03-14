@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Gambler, Gold, Hoarder
   artwork: {fileID: 21300000, guid: f61b8cba017d2f14ba2f9a98ccf20a11, type: 3}
   cardClass: 3
-  manaCost: 9
+  manaCost: 1
   attack: 9
   health: 9
   isHeld: 1

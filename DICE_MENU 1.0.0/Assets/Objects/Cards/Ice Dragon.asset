@@ -16,7 +16,7 @@ MonoBehaviour:
   description: A Cold Dragon Indeed
   artwork: {fileID: 21300000, guid: e3450de19f08c9b418657abc7a841881, type: 3}
   cardClass: 2
-  manaCost: 6
+  manaCost: 2
   attack: 12
   health: 12
   isHeld: 1

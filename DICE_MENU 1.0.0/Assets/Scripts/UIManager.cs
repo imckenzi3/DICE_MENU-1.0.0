@@ -58,15 +58,31 @@ public class UIManager : MonoBehaviour{
 	public void SearchByMana(int _mana) {
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if(cardManager.cards[i].manaCost == _mana){
-
+				cardSlots[i].gameObject.SetActive(true);
+			} else {
+				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
 	}
 
+	public void SearchByMoreMana(int _mana) {
+		for (int i = 0; i < cardManager.cards.Count; i++){
+			if(cardManager.cards[i].manaCost >= _mana){
+				cardSlots[i].gameObject.SetActive(true);
+			} else {
+				cardSlots[i].gameObject.SetActive(false);
+			}
+		}
+	}
+
+
+
 	public void SearchByClass(string _cardClass){
 		for (int i = 0; i < cardManager.cards.Count; i++){
-			if(cardManager.cards[i].cardClass.ToString == _cardClass){
-
+			if(cardManager.cards[i].cardClass.ToString() == _cardClass){
+				cardSlots[i].gameObject.SetActive(true);
+			} else {
+				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
 	}

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: A Mad Man Made This
   artwork: {fileID: 21300000, guid: ceceaa79b5484884aa7f06ba0659c181, type: 3}
   cardClass: 4
-  manaCost: 5
+  manaCost: 2
   attack: 15
   health: 8
   isHeld: 1

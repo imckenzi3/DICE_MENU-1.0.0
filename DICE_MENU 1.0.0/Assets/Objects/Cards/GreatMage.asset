@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Almighty Wizard King
   artwork: {fileID: 21300000, guid: 61d956168d1da0c4383e99867811e1db, type: 3}
   cardClass: 0
-  manaCost: 8
+  manaCost: 2
   attack: 8
   health: 9
   isHeld: 1
