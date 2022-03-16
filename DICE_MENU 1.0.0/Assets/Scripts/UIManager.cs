@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour{
 		UpdatePage();
 
 		TurnPage();
+
+		if (isSearch)
+			totalNumbers = 0; 
 	}
 
 	private void UpdatePage(){
@@ -31,8 +34,14 @@ public class UIManager : MonoBehaviour{
 			        pageText.text = (page + 1) + "/" + (Mathf.Ceil(cardSlots.Length / 8) +1).ToString();	// current page + "/" + max Page
 
 		}	else	{
-			pageText.text = "Search By MANA / CLASS MODE";
+			// pageText.text = "Search By MANA / CLASS MODE";
+			pageText.text = (page + 1) + "/" + (Mathf.Ceil(totalNumbers / 8) + 1).ToString();
 		}
+	}
+
+	public void InitialCardsTab(){
+		page = 0;
+		isSearch = false; 
 	}
 
     private void CallWhenTurnPage(){
@@ -48,15 +57,16 @@ public class UIManager : MonoBehaviour{
 	public void SearchByMana(int _mana) {
 		isSearch = true;
 		totalNumbers = 0;
-			for (int i = 0; i < cardManager.cards.Count; i++){
-				if (_mana < 8){
-				if(cardManager.cards[i].manaCost == _mana){
-						DisplaySingleCard(i);
+
+		for (int i = 0; i < cardManager.cards.Count; i++){
+			if (_mana < 8){
+				if (cardManager.cards[i].manaCost == _mana){
+					DisplaySingleCard(i);
 				} else {
-						cardSlots[i].gameObject.SetActive(false);
-					} 
-				} else {
-				if(cardManager.cards[i].manaCost >= _mana){
+					cardSlots[i].gameObject.SetActive(false);
+				}
+			} else  {
+				if (cardManager.cards[i].manaCost >= _mana){
 					DisplaySingleCard(i);
 				} else {
 					cardSlots[i].gameObject.SetActive(false);
