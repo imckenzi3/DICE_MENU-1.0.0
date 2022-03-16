@@ -18,20 +18,21 @@ public class UIManager : MonoBehaviour{
 
 	[SerializeField] private bool isSearch;	// Default value is false. Once the value is false. normal display mode
 	[SerializeField] private int totalNumbers;
+	[SerializeField] private int currentSearchMana;
 
   	private void Update(){
 		UpdatePage();
 
 		TurnPage();
 
-		if (isSearch)
+		if (!isSearch)
 			totalNumbers = 0; 
 	}
 
 	private void UpdatePage(){
 		// pageText.text = (page + 1).ToString();
 		if (!isSearch){
-			        pageText.text = (page + 1) + "/" + (Mathf.Ceil(cardSlots.Length / 8) +1).ToString();	// current page + "/" + max Page
+			pageText.text = (page + 1) + "/" + (Mathf.Ceil(cardSlots.Length / 8) +1).ToString();	// current page + "/" + max Page
 
 		}	else	{
 			// pageText.text = "Search By MANA / CLASS MODE";
@@ -41,7 +42,8 @@ public class UIManager : MonoBehaviour{
 
 	public void InitialCardsTab(){
 		page = 0;
-		isSearch = false; 
+		isSearch = false;
+		CallWhenTurnPage();
 	}
 
     private void CallWhenTurnPage(){
@@ -54,25 +56,68 @@ public class UIManager : MonoBehaviour{
         }
     }
 
-	public void SearchByMana(int _mana) {
+	// public void SearchByMana(int _mana) {
+	// 	isSearch = true;
+	// 	totalNumbers = 0;
+
+	// 	for (int i = 0; i < cardManager.cards.Count; i++){
+	// 		if (_mana < 8){
+	// 			if (cardManager.cards[i].manaCost == _mana){
+	// 				DisplaySingleCard(i);
+	// 			} else {
+	// 				cardSlots[i].gameObject.SetActive(false);
+	// 			}
+	// 		} else  {
+	// 			if (cardManager.cards[i].manaCost >= _mana){
+	// 				DisplaySingleCard(i);
+	// 			} else {
+	// 				cardSlots[i].gameObject.SetActive(false);
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	public void SearchByMana(int _mana){
 		isSearch = true;
 		totalNumbers = 0;
+		page = 0;
+		currentSearchMana = _mana;
 
+		List<Card> cards = new List<Card>();
+		cards = ReturnCard(_mana);
+
+		for (int i = 0; i < cardSlots.Length; i++){
+			cardSlots[i].gameObject.SetActive(false);	
+		}	
+
+		for (int i = 0; i < cards.Count; i++){
+			if (i >= page * 8 && i < (page +1) * 8){
+				totalNumbers++;
+				cardSlots[i].gameObject.SetActive(true);
+			}
+		}
+	}
+
+	public List<Card> ReturnCard(int _mana){
+		List <Card> cards = new List <Card>();	// Create one empty list
+		
 		for (int i = 0; i < cardManager.cards.Count; i++){
+			Card card;
+
 			if (_mana < 8){
 				if (cardManager.cards[i].manaCost == _mana){
-					DisplaySingleCard(i);
-				} else {
-					cardSlots[i].gameObject.SetActive(false);
+					card = cardManager.cards[i];
+					cards.Add(card);
 				}
-			} else  {
+			} else {
 				if (cardManager.cards[i].manaCost >= _mana){
-					DisplaySingleCard(i);
-				} else {
-					cardSlots[i].gameObject.SetActive(false);
+					card = cardManager.cards[i];
+					cards.Add(card);
 				}
 			}
 		}
+		Debug.Log(cards.Count);
+		return cards; 
 	}
 
 	public void SearchByClass(string _cardClass){
@@ -88,7 +133,7 @@ public class UIManager : MonoBehaviour{
 	}
 	
 	private void TurnPage() {
-		if (isSearch){
+		if (!isSearch){	// NORMAL MODE
 			if(Input.GetKeyDown(KeyCode.D)){	// Next Page
 				// iIf the page is greater than the cards total number divided by 8 --> page turn back to 0
 				if(page >= Mathf.Floor((cardManager.cards.Count -1) /8 )){
@@ -111,12 +156,47 @@ public class UIManager : MonoBehaviour{
 				CallWhenTurnPage();
 			}
 		}
+		else {
+			if (Input.GetKeyDown(KeyCode.D)){
+				if (page >= (Mathf.FloorToInt(totalNumbers / 8 ))){
+					page = 0;
+				} else {
+					page++;
+				}
+				DisplayBySearchMana();
+			}
+			
+			if (Input.GetKeyDown(KeyCode.A)){
+				if (page<=0){
+					page = (Mathf.FloorToInt(totalNumbers / 8));
+				} else {
+					page--;
+				}
+				DisplayBySearchMana();
+			}
+		}
 	}
 
 	// CODE REFACTORING
 	private void DisplaySingleCard(int i) {
 		totalNumbers++;
 		cardSlots[i].gameObject.SetActive(true);
+	}
+
+	//	Update when we turn page search by MANA
+	private void DisplayBySearchMana(){
+		List <Card> cards = new List<Card>();
+		cards = ReturnCard(currentSearchMana);
+
+		for (int i = 0; i < cardSlots.Length; i++){
+			cardSlots[i].gameObject.SetActive(false);
+		}
+		
+		for (int i = 0; i < cards.Count; i++){
+			if (i>= page *8 && i < (page +1) *8){
+				cardSlots[i].gameObject.SetActive(true);
+			}
+		}
 	}
 
 	#region Code Refactoring
