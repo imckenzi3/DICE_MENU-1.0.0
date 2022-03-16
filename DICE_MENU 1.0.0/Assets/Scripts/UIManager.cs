@@ -14,6 +14,11 @@ public class UIManager : MonoBehaviour{
     public int page;
     public Text pageText;
 
+	// REFACTORING
+
+	[SerializeField] private bool isSearch;	// Default value is false. Once the value is false. normal display mode
+	[SerializeField] private int totalNumbers;
+
   	private void Update(){
 		UpdatePage();
 
@@ -22,7 +27,12 @@ public class UIManager : MonoBehaviour{
 
 	private void UpdatePage(){
 		// pageText.text = (page + 1).ToString();
-        pageText.text = (page + 1) + "/" + (Mathf.Ceil(cardSlots.Length / 8) +1).ToString();
+		if (!isSearch){
+			        pageText.text = (page + 1) + "/" + (Mathf.Ceil(cardSlots.Length / 8) +1).ToString();	// current page + "/" + max Page
+
+		}	else	{
+			pageText.text = "Search By MANA / CLASS MODE";
+		}
 	}
 
     private void CallWhenTurnPage(){
@@ -36,6 +46,8 @@ public class UIManager : MonoBehaviour{
     }
 
 	public void SearchByMana(int _mana) {
+		isSearch = true;
+		totalNumbers = 0;
 			for (int i = 0; i < cardManager.cards.Count; i++){
 				if (_mana < 8){
 				if(cardManager.cards[i].manaCost == _mana){
@@ -54,6 +66,8 @@ public class UIManager : MonoBehaviour{
 	}
 
 	public void SearchByClass(string _cardClass){
+		isSearch = true;
+		totalNumbers = 0;
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if(cardManager.cards[i].cardClass.ToString() == _cardClass){
 				DisplaySingleCard(i);
@@ -64,31 +78,34 @@ public class UIManager : MonoBehaviour{
 	}
 	
 	private void TurnPage() {
+		if (isSearch){
 			if(Input.GetKeyDown(KeyCode.D)){	// Next Page
-			// iIf the page is greater than the cards total number divided by 8 --> page turn back to 0
-			if(page >= Mathf.Floor((cardManager.cards.Count -1) /8 )){
-				page = 0;
-			} else {
-				page++;
+				// iIf the page is greater than the cards total number divided by 8 --> page turn back to 0
+				if(page >= Mathf.Floor((cardManager.cards.Count -1) /8 )){
+					page = 0;
+				} else {
+					page++;
+				}
+				Debug.Log(page);
+				CallWhenTurnPage();
 			}
-			Debug.Log(page);
-            CallWhenTurnPage();
-		}
 
-		if(Input.GetKeyDown(KeyCode.A)){	// Last Page
-			// If the page is less than or equal than 0, the page should turn to the cards total number divided by 8
-			if(page <= 0){
-				page = Mathf.FloorToInt((cardManager.cards.Count -1) /8);
-			} else {
-				page--;
+			if(Input.GetKeyDown(KeyCode.A)){	// Last Page
+				// If the page is less than or equal than 0, the page should turn to the cards total number divided by 8
+				if(page <= 0){
+					page = Mathf.FloorToInt((cardManager.cards.Count -1) /8);
+				} else {
+					page--;
+				}
+				Debug.Log(page);
+				CallWhenTurnPage();
 			}
-			Debug.Log(page);
-            CallWhenTurnPage();
 		}
 	}
 
 	// CODE REFACTORING
 	private void DisplaySingleCard(int i) {
+		totalNumbers++;
 		cardSlots[i].gameObject.SetActive(true);
 	}
 
