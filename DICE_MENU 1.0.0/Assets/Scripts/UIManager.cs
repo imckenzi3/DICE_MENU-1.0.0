@@ -127,6 +127,9 @@ public class UIManager : MonoBehaviour{
 					UpdatePageUI();
 				}
 			}
+			if (isSearchByInput){
+
+			}
 		}
 	}
 
@@ -135,6 +138,7 @@ public class UIManager : MonoBehaviour{
 
 		isSearchByMana = true;
 		isSearchByClass = false;
+		isSearchByInput = false;
 
 		isSearch = true;
 		totalNumbers = 0;
@@ -143,7 +147,9 @@ public class UIManager : MonoBehaviour{
 
 		List<Card> cards = new List<Card>();
 		cards = ReturnCard(_mana);
-
+		
+		// DisplayCardWhenPressButton(cards);
+		UpdatePageUI();
 
 
 		for (int i = 0; i < cardManager.cards.Count; i++){
@@ -167,6 +173,7 @@ public class UIManager : MonoBehaviour{
 	public void SearchByClass(string _cardClass){
 		isSearchByMana = false;
 		isSearchByClass = true;
+		isSearchByInput = false;
 
 		isSearch = true;
 		totalNumbers = 0;
@@ -176,6 +183,8 @@ public class UIManager : MonoBehaviour{
 		List<Card> cards = new List<Card>();
 		cards = ReturnCard(_cardClass);
 
+		// DisplayCardWhenPressButton(cards);
+		UpdatePageUI();
 
 		for (int i=0; i<cardSlots.Length; i++){
 			cardSlots[i].gameObject.SetActive(false);
@@ -186,6 +195,21 @@ public class UIManager : MonoBehaviour{
 				DisplaySingleCard(i);
 			} else {
 				cardSlots[i].gameObject.SetActive(false);
+			}
+		}
+	}
+
+	private void DisplayCardWhenPressButton(List<Card> _cards){
+		for (int i = 0; i < cardSlots.Length; i++){
+			cardSlots[i].gameObject.SetActive(false);
+		}
+
+		for (int i = 0; i < _cards.Count; i++){
+			if (i >= page * 8 && i < (page + 1) * 8){
+				totalNumbers++;
+				cardSlots[i].gameObject.SetActive(true);
+			} else {	
+			cardSlots[i].gameObject.SetActive(false);
 			}
 		}
 	}
@@ -215,6 +239,7 @@ public class UIManager : MonoBehaviour{
 
 		isSearchByMana = false;
 		isSearchByClass = false;
+		isSearchByInput = false;
 
 		UpdatePageUI();
 	}
@@ -310,16 +335,17 @@ public class UIManager : MonoBehaviour{
 		}
 		
 		for (int i = 0; i < _cards.Count; i++){
-			if (i>= page *8 && i < (page +1) *8){
+			if (i>= page * 8 && i < (page +1) *8){
 				cardSlots[i].gameObject.SetActive(true);
-			} else {
+			}
+			else {
 			cardSlots[i].gameObject.SetActive(false);
 			}
 		}
 	}
 
 	// When we press enter button or search icon, we will call this function
-	public void SearcByInput(){
+	public void SearchByInput(){
 		isSearchByInput = true;
 		isSearchByMana = false;
 		isSearchByClass = false;
@@ -339,7 +365,6 @@ public class UIManager : MonoBehaviour{
 				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
-
 		pageText.text = "1/1";	// Display correct Page UI
 	}
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Is a Creep
   artwork: {fileID: 21300000, guid: 912c65f7fe5115c42895b1a5959f0508, type: 3}
   cardClass: 4
-  manaCost: 3
+  manaCost: 2
   attack: 7
   health: 7
   isHeld: 1

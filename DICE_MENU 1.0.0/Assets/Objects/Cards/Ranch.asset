@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Death To All Who Oppose
   artwork: {fileID: 21300000, guid: 3b4228d7f10615e4da60b2a9d2c32406, type: 3}
   cardClass: 1
-  manaCost: 4
+  manaCost: 2
   attack: 8
   health: 9
   isHeld: 1
