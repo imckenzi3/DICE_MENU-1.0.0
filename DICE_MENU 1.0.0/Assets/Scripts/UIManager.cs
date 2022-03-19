@@ -130,7 +130,7 @@ public class UIManager : MonoBehaviour{
 
 	//----------------------------------------------------------
 
-	// Working
+	// Not Working
 	public void SearchByMana(int _mana){
 
 		isSearchByMana = true;
@@ -141,38 +141,24 @@ public class UIManager : MonoBehaviour{
 		page = 0;
 		currentSearchMana = _mana;
 
-		// List<Card> cards = new List<Card>();
-		// cards = ReturnCard(_mana);
-
+		List<Card> cards = new List<Card>();
+		cards = ReturnCard(_mana);
 
 		for (int i = 0; i < cardManager.cards.Count; i++){
-			if (_mana <8){
+			if (_mana < 8){
 				if(cardManager.cards[i].manaCost == _mana){
-					DisplaySingleCard(i);
+					cardSlots[i].gameObject.SetActive(true);
 				} else {
 					cardSlots[i].gameObject.SetActive(false);
 				}
 			} else {
 				if (cardManager.cards[i].manaCost >= _mana){
-					DisplaySingleCard(i);
+					cardSlots[i].gameObject.SetActive(true);
 				} else {
 					cardSlots[i].gameObject.SetActive(false);
 				}
 			}
 		}
-
-		for (int i = 0; i < cardSlots.Length; i++){
-			cardSlots[i].gameObject.SetActive(false);	
-		}	
-
-		// for (int i = 0; i < cards.Count; i++){
-		// 	if (i >= page * 8 && i < (page +1) * 8){
-		// 		totalNumbers++;
-		// 		cardSlots[i].gameObject.SetActive(true);
-		// 	} else {
-		// 	cardSlots[i].gameObject.SetActive(false);
-		// 	}
-		// }
 	}
 
 	// Working
