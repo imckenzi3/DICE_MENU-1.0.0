@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Reaper
   description: Death Calls
   artwork: {fileID: 21300000, guid: ca374e166ec33c6498b0ef48bbdcad7a, type: 3}
-  cardClass: 1
+  cardClass: 4
   manaCost: 4
   attack: 6
   health: 6

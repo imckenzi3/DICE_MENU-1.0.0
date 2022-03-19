@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Lord Toxic
   description: The First Toxic Elden Lord. Defs a must have at a party.
   artwork: {fileID: 21300000, guid: 7b4bcfd58ee46bc48a8e10627c73156f, type: 3}
-  cardClass: 1
+  cardClass: 4
   manaCost: 30
   attack: 23
   health: 30

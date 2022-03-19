@@ -25,13 +25,19 @@ public class UIManager : MonoBehaviour{
 	[SerializeField] private bool isSearchByClass;
 	[SerializeField] private string currentSearchClass;
 
+	// Search feature
+	[SerializeField] private string searchName;
+	public InputField searchInput;
+	[SerializeField] private bool isSearchByInput;
+
 	private void Start(){
 		DisplayCards();
+		UpdatePageUI();
 	}
 	
 	// Working
   	private void Update(){
-		UpdatePageUI();
+		// UpdatePageUI();	// Move out of update method
 
 		TurnPage();
 
@@ -53,7 +59,7 @@ public class UIManager : MonoBehaviour{
 	// Working
 	private void TurnPage() {
 		if (!isSearch){	// NORMAL MODE
-			if(Input.GetKeyDown(KeyCode.D)){	// Next Page
+			if(Input.GetKeyDown(KeyCode.RightArrow)){	// Next Page
 				// iIf the page is greater than the cards total number divided by 8 --> page turn back to 0
 				if(page >= Mathf.Floor((cardManager.cards.Count -1) /8 )){
 					page = 0;
@@ -62,9 +68,10 @@ public class UIManager : MonoBehaviour{
 				}
 				Debug.Log(page);
 				DisplayCards();
+				UpdatePageUI();
 			}
 
-			if(Input.GetKeyDown(KeyCode.A)){	// Last Page
+			if(Input.GetKeyDown(KeyCode.LeftArrow)){	// Last Page
 				// If the page is less than or equal than 0, the page should turn to the cards total number divided by 8
 				if(page <= 0){
 					page = Mathf.FloorToInt((cardManager.cards.Count -1) /8);
@@ -73,46 +80,51 @@ public class UIManager : MonoBehaviour{
 				}
 				Debug.Log(page);
 				DisplayCards();
+				UpdatePageUI();
 			}
 		}
 		else {
 			if (isSearchByMana){
-				if (Input.GetKeyDown(KeyCode.D)){
+				if (Input.GetKeyDown(KeyCode.RightArrow)){
 					if (page >= (Mathf.FloorToInt(totalNumbers / 8 ))){
 						page = 0;
 					} else {
 						page++;
 					}
 					DisplayBySearchMana();
+					UpdatePageUI();
 				}
 			
-				if (Input.GetKeyDown(KeyCode.A)){
+				if (Input.GetKeyDown(KeyCode.LeftArrow)){
 					if (page<=0){
 						page = (Mathf.FloorToInt(totalNumbers / 8));
 					} else {
 						page--;
 					}
 					DisplayBySearchMana();
+					UpdatePageUI();
 				}
 			}
 
 			if (isSearchByClass){
-				if (Input.GetKeyDown(KeyCode.D)){
+				if (Input.GetKeyDown(KeyCode.RightArrow)){
 					if (page >= (Mathf.FloorToInt(totalNumbers / 8 ))){
 						page = 0;
 					} else {
 						page++;
 					}
 					DisplayBySearchClass();
+					UpdatePageUI();
 				}
 			
-				if (Input.GetKeyDown(KeyCode.A)){
+				if (Input.GetKeyDown(KeyCode.LeftArrow)){
 					if (page<=0){
 						page = (Mathf.FloorToInt(totalNumbers / 8));
 					} else {
 						page--;
 					}
 					DisplayBySearchClass();
+					UpdatePageUI();
 				}
 			}
 		}
@@ -203,6 +215,8 @@ public class UIManager : MonoBehaviour{
 
 		isSearchByMana = false;
 		isSearchByClass = false;
+
+		UpdatePageUI();
 	}
 
 	//----------------------------------------------------------
@@ -254,6 +268,7 @@ public class UIManager : MonoBehaviour{
 		cards = ReturnCard(currentSearchMana);
 
 		DisplayCardBySearch(cards);
+		UpdatePageUI();
 
 		// for (int i = 0; i < cardSlots.Length; i++){
 		// 	cardSlots[i].gameObject.SetActive(false);
@@ -273,6 +288,7 @@ public class UIManager : MonoBehaviour{
 		cards = ReturnCard(currentSearchClass);
 
 		DisplayCardBySearch(cards);
+		UpdatePageUI();
 
 		// for (int i = 0; i < cardSlots.Length; i++){
 		// 	cardSlots[i].gameObject.SetActive(false);
@@ -300,5 +316,30 @@ public class UIManager : MonoBehaviour{
 			cardSlots[i].gameObject.SetActive(false);
 			}
 		}
+	}
+
+	// When we press enter button or search icon, we will call this function
+	public void SearcByInput(){
+		isSearchByInput = true;
+		isSearchByMana = false;
+		isSearchByClass = false;
+
+		searchName = searchInput.text; 
+
+		for (int i = 0; i < cardSlots.Length; i++){
+			cardSlots[i].gameObject.SetActive(false);
+		}
+
+		for (int i = 0; i < cardManager.cards.Count; i++){
+			if (searchName.ToUpper() == cardManager.cards[i].name.ToUpper()){
+				// Display the specific card!					
+
+				cardSlots[i].gameObject.SetActive(true);
+			} 	else {
+				cardSlots[i].gameObject.SetActive(false);
+			}
+		}
+
+		pageText.text = "1/1";	// Display correct Page UI
 	}
 }
