@@ -26,17 +26,28 @@ public class UIManager : MonoBehaviour{
 	[SerializeField] private string currentSearchClass;
 
 	private void Start(){
-		CallWhenTurnPage();
+		DisplayCards();
 	}
 	
 	// Working
   	private void Update(){
-		UpdatePage();
+		UpdatePageUI();
 
 		TurnPage();
 
 		if (!isSearch)
 			totalNumbers = 0; 
+	}
+
+	// Working
+	private void UpdatePageUI(){
+		if (!isSearch){
+			// pageText.text = (page + 1).ToString();
+			pageText.text = (page + 1) + "/" + (Mathf.Ceil(cardSlots.Length / 8) +1).ToString();	// current page + "/" + max Page
+		}	else	{
+			// pageText.text = "Search By MANA / CLASS MODE";
+			pageText.text = (page + 1) + "/" + (Mathf.Ceil(totalNumbers / 8) + 1).ToString();
+		}
 	}
 
 	// Working
@@ -50,7 +61,7 @@ public class UIManager : MonoBehaviour{
 					page++;
 				}
 				Debug.Log(page);
-				CallWhenTurnPage();
+				DisplayCards();
 			}
 
 			if(Input.GetKeyDown(KeyCode.A)){	// Last Page
@@ -61,7 +72,7 @@ public class UIManager : MonoBehaviour{
 					page--;
 				}
 				Debug.Log(page);
-				CallWhenTurnPage();
+				DisplayCards();
 			}
 		}
 		else {
@@ -108,29 +119,6 @@ public class UIManager : MonoBehaviour{
 	}
 
 	// Working
-	private void UpdatePage(){
-		if (!isSearch){
-			// pageText.text = (page + 1).ToString();
-			pageText.text = (page + 1) + "/" + (Mathf.Ceil(cardSlots.Length / 8) +1).ToString();	// current page + "/" + max Page
-		}	else	{
-			// pageText.text = "Search By MANA / CLASS MODE";
-			pageText.text = (page + 1) + "/" + (Mathf.Ceil(totalNumbers / 8) + 1).ToString();
-		}
-	}
-
-	// Working
-	public void InitialCardsTab(){
-		page = 0;
-		isSearch = false;
-		CallWhenTurnPage();
-
-		isSearchByMana = false;
-		isSearchByClass = false;
-	}
-
-	//----------------------------------------------------------
-
-	// Not Working
 	public void SearchByMana(int _mana){
 
 		isSearchByMana = true;
@@ -144,16 +132,18 @@ public class UIManager : MonoBehaviour{
 		List<Card> cards = new List<Card>();
 		cards = ReturnCard(_mana);
 
+
+
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if (_mana < 8){
 				if(cardManager.cards[i].manaCost == _mana){
-					cardSlots[i].gameObject.SetActive(true);
+						DisplaySingleCard(i);
 				} else {
 					cardSlots[i].gameObject.SetActive(false);
 				}
 			} else {
 				if (cardManager.cards[i].manaCost >= _mana){
-					cardSlots[i].gameObject.SetActive(true);
+						DisplaySingleCard(i);
 				} else {
 					cardSlots[i].gameObject.SetActive(false);
 				}
@@ -169,6 +159,15 @@ public class UIManager : MonoBehaviour{
 		isSearch = true;
 		totalNumbers = 0;
 		page = 0;
+
+		currentSearchClass = _cardClass;
+		List<Card> cards = new List<Card>();
+		cards = ReturnCard(_cardClass);
+
+
+		for (int i=0; i<cardSlots.Length; i++){
+			cardSlots[i].gameObject.SetActive(false);
+		}
 		
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if(cardManager.cards[i].cardClass.ToString() == _cardClass){
@@ -177,27 +176,10 @@ public class UIManager : MonoBehaviour{
 				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
-
-		currentSearchClass = _cardClass;
-		List<Card> cards = new List<Card>();
-		cards = ReturnCard(_cardClass);
-
-		// for (int i = 0; i < cardSlots.Length; i++){
-		// 	cardSlots[i].gameObject.SetActive(false);
-		// }
-
-		// for (int i = 0; i < cards.Count; i++){
-		// 	if (i >= page * 8 && i < (page +1) * 8){
-		// 		totalNumbers++;
-		// 		cardSlots[i].gameObject.SetActive(true);
-		// 	} else {
-		// 	cardSlots[i].gameObject.SetActive(false);
-		// 	}
-		// }
 	}
 
 	// Normal Mode - working
-    private void CallWhenTurnPage(){
+    private void DisplayCards(){
         for (int i = 0; i<cardManager.cards.Count; i++){
             if (i>=page *8 && i<(page + 1) *8){
                 DisplaySingleCard(i);
@@ -213,8 +195,19 @@ public class UIManager : MonoBehaviour{
 		cardSlots[i].gameObject.SetActive(true);
 	}
 
+	// Working
+	public void InitialCardsTab(){
+		page = 0;
+		isSearch = false;
+		DisplayCards();
+
+		isSearchByMana = false;
+		isSearchByClass = false;
+	}
+
 	//----------------------------------------------------------
 
+	#region Helper Function
 	//	Help FUNCTION search by mana - working
 	private List<Card> ReturnCard(int _mana){
 		List <Card> cards = new List <Card>();	// Create one empty list
@@ -253,34 +246,54 @@ public class UIManager : MonoBehaviour{
 		Debug.Log(cards.Count);
 		return cards; 
 	} 
-
+	#endregion
+	
 	//	Update when we turn page search by MANA - Working
 	private void DisplayBySearchMana(){
 		List <Card> cards = new List<Card>();
 		cards = ReturnCard(currentSearchMana);
 
-		for (int i = 0; i < cardSlots.Length; i++){
-			cardSlots[i].gameObject.SetActive(false);
-		}
+		DisplayCardBySearch(cards);
+
+		// for (int i = 0; i < cardSlots.Length; i++){
+		// 	cardSlots[i].gameObject.SetActive(false);
+		// }
 		
-		for (int i = 0; i < cards.Count; i++){
-			if (i>= page *8 && i < (page +1) *8){
-				cardSlots[i].gameObject.SetActive(true);
-			} else {
-			cardSlots[i].gameObject.SetActive(false);
-			}
-		}
+		// for (int i = 0; i < cards.Count; i++){
+		// 	if (i>= page *8 && i < (page +1) *8){
+		// 		cardSlots[i].gameObject.SetActive(true);
+		// 	} else {
+		// 	cardSlots[i].gameObject.SetActive(false);
+		// 	}
+		// }
 	}
 
 	private void DisplayBySearchClass(){
 		List <Card> cards = new List<Card>();
 		cards = ReturnCard(currentSearchClass);
 
+		DisplayCardBySearch(cards);
+
+		// for (int i = 0; i < cardSlots.Length; i++){
+		// 	cardSlots[i].gameObject.SetActive(false);
+		// }
+		
+		// for (int i = 0; i < cards.Count; i++){
+		// 	if (i>= page *8 && i < (page +1) *8){
+		// 		cardSlots[i].gameObject.SetActive(true);
+		// 	} else {
+		// 	cardSlots[i].gameObject.SetActive(false);
+		// 	}
+		// }
+	}
+
+	// Refactoring for these two functions above
+	private void DisplayCardBySearch(List<Card> _cards){
 		for (int i = 0; i < cardSlots.Length; i++){
 			cardSlots[i].gameObject.SetActive(false);
 		}
 		
-		for (int i = 0; i < cards.Count; i++){
+		for (int i = 0; i < _cards.Count; i++){
 			if (i>= page *8 && i < (page +1) *8){
 				cardSlots[i].gameObject.SetActive(true);
 			} else {
@@ -288,26 +301,4 @@ public class UIManager : MonoBehaviour{
 			}
 		}
 	}
-
-	#region Code Refactoring
-	// public void SearchByMana(int _mana) {
-	// 	for (int i = 0; i < cardManager.cards.Count; i++){
-	// 		if(cardManager.cards[i].manaCost == _mana){
-	// 			cardSlots[i].gameObject.SetActive(true);
-	// 		} else {
-	// 			cardSlots[i].gameObject.SetActive(false);
-	// 		}
-	// 	}
-	// }
-
-	// public void SearchByMoreMana(int _mana) {
-	// 	for (int i = 0; i < cardManager.cards.Count; i++){
-	// 		if(cardManager.cards[i].manaCost >= _mana){
-	// 			cardSlots[i].gameObject.SetActive(true);
-	// 		} else {
-	// 			cardSlots[i].gameObject.SetActive(false);
-	// 		}
-	// 	}
-	// }
-	#endregion
 }
