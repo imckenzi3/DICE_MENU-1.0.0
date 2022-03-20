@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+
 
 public class UIManager : MonoBehaviour{
-
     public CardManager cardManager;
     public GameObject[] cardSlots;
 
 	// For Card-Class colors 
 	// public Color humanColor, orcColor, dragonColor, beastColor, otherColor;
-    
     public int page;
     public Text pageText;
 
 	// REFACTORING
-
 	[SerializeField] private bool isSearch;	// Default value is false. Once the value is false. normal display mode
 	[SerializeField] private int totalNumbers;
 	[SerializeField] private int currentSearchMana;
@@ -60,8 +59,8 @@ public class UIManager : MonoBehaviour{
 	private void TurnPage() {
 		if (!isSearch){	// NORMAL MODE
 			if(Input.GetKeyDown(KeyCode.RightArrow)){	// Next Page
-				// iIf the page is greater than the cards total number divided by 8 --> page turn back to 0
-				if(page >= Mathf.Floor((cardManager.cards.Count -1) /8 )){
+				// If the page is greater than the cards total number divided by 8 --> page turn back to 0
+				if(page >= Mathf.Floor((cardManager.cards.Count - 1) /8 )){
 					page = 0;
 				} else {
 					page++;
@@ -96,7 +95,7 @@ public class UIManager : MonoBehaviour{
 				}
 			
 				if (Input.GetKeyDown(KeyCode.LeftArrow)){
-					if (page<=0){
+					if (page <= 0){
 						page = (Mathf.FloorToInt(totalNumbers / 8));
 					} else {
 						page--;
@@ -118,7 +117,7 @@ public class UIManager : MonoBehaviour{
 				}
 			
 				if (Input.GetKeyDown(KeyCode.LeftArrow)){
-					if (page<=0){
+					if (page <= 0){
 						page = (Mathf.FloorToInt(totalNumbers / 8));
 					} else {
 						page--;
@@ -155,13 +154,13 @@ public class UIManager : MonoBehaviour{
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if (_mana < 8){
 				if(cardManager.cards[i].manaCost == _mana){
-						DisplaySingleCard(i);
+					DisplaySingleCard(i);
 				} else {
 					cardSlots[i].gameObject.SetActive(false);
 				}
 			} else {
 				if (cardManager.cards[i].manaCost >= _mana){
-						DisplaySingleCard(i);
+					DisplaySingleCard(i);
 				} else {
 					cardSlots[i].gameObject.SetActive(false);
 				}
@@ -193,12 +192,14 @@ public class UIManager : MonoBehaviour{
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if(cardManager.cards[i].cardClass.ToString() == _cardClass){
 				DisplaySingleCard(i);
+
 			} else {
 				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
 	}
 
+	// Not Working
 	private void DisplayCardWhenPressButton(List<Card> _cards){
 		for (int i = 0; i < cardSlots.Length; i++){
 			cardSlots[i].gameObject.SetActive(false);
@@ -209,15 +210,15 @@ public class UIManager : MonoBehaviour{
 				totalNumbers++;
 				cardSlots[i].gameObject.SetActive(true);
 			} else {	
-			cardSlots[i].gameObject.SetActive(false);
+				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
 	}
 
 	// Normal Mode - working
     private void DisplayCards(){
-        for (int i = 0; i<cardManager.cards.Count; i++){
-            if (i>=page *8 && i<(page + 1) *8){
+        for (int i = 0; i < cardManager.cards.Count; i++){
+            if (i >= page * 8 && i < (page + 1) * 8){
                 DisplaySingleCard(i);
             } else { 
                 cardSlots[i].gameObject.SetActive(false);
@@ -335,11 +336,10 @@ public class UIManager : MonoBehaviour{
 		}
 		
 		for (int i = 0; i < _cards.Count; i++){
-			if (i>= page * 8 && i < (page +1) *8){
+			if (i >= page * 8 && i < (page + 1) * 8){
 				cardSlots[i].gameObject.SetActive(true);
-			}
-			else {
-			cardSlots[i].gameObject.SetActive(false);
+			} else {
+				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
 	}
@@ -353,7 +353,7 @@ public class UIManager : MonoBehaviour{
 		searchName = searchInput.text; 
 
 		for (int i = 0; i < cardSlots.Length; i++){
-			cardSlots[i].gameObject.SetActive(false);
+			cardSlots[i].gameObject.SetActive(true);
 		}
 
 		for (int i = 0; i < cardManager.cards.Count; i++){

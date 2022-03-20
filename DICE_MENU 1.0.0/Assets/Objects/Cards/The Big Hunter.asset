@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Hunts Big, Very Big
   artwork: {fileID: 21300000, guid: 0498018d67151a040b3e7ed3a3eb11ea, type: 3}
   cardClass: 0
-  manaCost: 5
+  manaCost: 6
   attack: 12
   health: 5
   isHeld: 1

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: A Thing, Defently A Thing
   artwork: {fileID: 21300000, guid: 9ed81c4ae9d7677488294c38ef752082, type: 3}
   cardClass: 4
-  manaCost: 2
+  manaCost: 3
   attack: 2
   health: 101
   isHeld: 1

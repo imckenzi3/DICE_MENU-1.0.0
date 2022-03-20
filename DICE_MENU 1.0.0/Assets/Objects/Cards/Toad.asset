@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Dunno, It's a Toad
   artwork: {fileID: 21300000, guid: 8ed4b06a69134a34eaa18910ef977d75, type: 3}
   cardClass: 3
-  manaCost: 7
+  manaCost: 8
   attack: 2
   health: 4
   isHeld: 1
