@@ -148,9 +148,6 @@ public class UIManager : MonoBehaviour{
 		cards = ReturnCard(_mana);
 		
 		// DisplayCardWhenPressButton(cards);
-		UpdatePageUI();
-
-
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if (_mana < 8){
 				if(cardManager.cards[i].manaCost == _mana){
@@ -166,6 +163,8 @@ public class UIManager : MonoBehaviour{
 				}
 			}
 		}
+
+		UpdatePageUI();
 	}
 
 	// Working
@@ -183,7 +182,6 @@ public class UIManager : MonoBehaviour{
 		cards = ReturnCard(_cardClass);
 
 		// DisplayCardWhenPressButton(cards);
-		UpdatePageUI();
 
 		for (int i=0; i<cardSlots.Length; i++){
 			cardSlots[i].gameObject.SetActive(false);
@@ -197,6 +195,8 @@ public class UIManager : MonoBehaviour{
 				cardSlots[i].gameObject.SetActive(false);
 			}
 		}
+		
+		UpdatePageUI();
 	}
 
 	// Not Working
@@ -353,13 +353,12 @@ public class UIManager : MonoBehaviour{
 		searchName = searchInput.text; 
 
 		for (int i = 0; i < cardSlots.Length; i++){
-			cardSlots[i].gameObject.SetActive(true);
+			cardSlots[i].gameObject.SetActive(false	);
 		}
 
 		for (int i = 0; i < cardManager.cards.Count; i++){
 			if (searchName.ToUpper() == cardManager.cards[i].name.ToUpper()){
 				// Display the specific card!					
-
 				cardSlots[i].gameObject.SetActive(true);
 			} 	else {
 				cardSlots[i].gameObject.SetActive(false);
